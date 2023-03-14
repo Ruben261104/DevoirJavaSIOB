@@ -175,7 +175,7 @@ public class FrmMenu extends JFrame
                     for(Acteur act : filmSelectionne.getLesActeurs()){
                         if (act.getIdActeur() == numActeur){
                             act.CalculerNoteActeur(sldNoteFilm.getValue());
-                            refresh();
+                            actualiser();
                             break;
                         }
                     }
@@ -184,7 +184,7 @@ public class FrmMenu extends JFrame
             }
         });
     }
-    public void refresh()
+    public void actualiser()
     {
         mdl.LoadActeur(filmSelectionne.getLesActeurs());
         int total = 0;
