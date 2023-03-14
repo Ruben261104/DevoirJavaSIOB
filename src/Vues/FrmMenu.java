@@ -175,18 +175,24 @@ public class FrmMenu extends JFrame
                     for(Acteur act : filmSelectionne.getLesActeurs()){
                         if (act.getIdActeur() == numActeur){
                             act.CalculerNoteActeur(sldNoteFilm.getValue());
-                            actualiser();
                             break;
                         }
                     }
                 }
-                
+                actualiser();
             }
         });
     }
     public void actualiser()
     {
-        mdl.LoadActeur(filmSelectionne.getLesActeurs());
+        int numFilm = Integer.parseInt(tblFilms.getValueAt(tblFilms.getSelectedRow(),0).toString());
+        for(Film flm : cinemaSelectionne.getLesFilms()) {
+
+            mdl = new ModelJTable();
+            mdl.LoadActeur(flm.getLesActeurs());
+            tblActeurs.setModel(mdl);
+            filmSelectionne = flm;
+        }
         int total = 0;
         Acteur bestActeur = filmSelectionne.getBestActeur();
         txtNomMeilleurActeur.setText(bestActeur.getNomActeur());
